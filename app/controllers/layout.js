@@ -6,6 +6,9 @@ import ENV from 'squared-up/config/environment';
 
 export default class LayoutController extends Controller {
 
+  @tracked
+  rectangles = []
+
 	@action
   async addRectangle(rect) {
     this.count++
