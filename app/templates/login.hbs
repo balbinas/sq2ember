@@ -1,13 +1,36 @@
-<div>
-    <h1>Welcome to Squared Up!</h1>
-    <h2>Please login or sign up!</h2>
-    <div>
-        Email
-        <Input type="text" @value={{this.email}}/>
-        Password
-        <Input type="password" @value={{this.password}}/>
-        <button {{action "login"}}>Login</button>
-        <p>Don't have an account?</p>
-        {{#link-to "signup"}}Create Account{{/link-to}}
+<div class="container headers">
+    <div class="row">
+        <div class="col ">
+            <h1>Welcome to Squared Up!</h1>
+            <h2>Please login or sign up</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4 offset-md-4">
+            {{!-- <label> Email </label> --}}
+            <Input type="text" @value={{this.email}} placeholder="Email"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{!-- <label> Password </label> --}}
+            <Input type="password" @value={{this.password}} placeholder="Password"/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <BsButton 
+                @type="primary"
+                @defaultText="Log In"
+                @onClick={{action "login"}}
+                @pendingText="Loging in...">
+            </BsButton>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label>Don't have an account?</label>
+            {{#link-to "signup"}}Create Account{{/link-to}}
+        </div>
     </div>
 </div>

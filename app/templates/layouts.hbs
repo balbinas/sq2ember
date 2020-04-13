@@ -1,20 +1,39 @@
-<div>
-    <h1>Layouts</h1>
-
+<div class="container headers">
+    <div class="row">
+        <div class="col">
+            <h1>Layouts</h1>
+        </div>
+    </div>
     {{#each this.model as |ly|}}
-    <p> {{#link-to "layout" ly.id }}
+    <div class="row">
+        <div class="col">
+            {{#link-to "layout" ly.id }}
             Open {{ ly.name }}
-        {{/link-to}} </p>
+            {{/link-to}}
+        </div>
+    </div>
     {{/each}}
-
-    <button {{action "openLayoutBox"}}>New Layout</button>
-
-    <div>
-        {{#if newLayout}}
+    <div class="row">
+        <div class="col">
+            <BsButton 
+                @type="primary"
+                @defaultText="Create New Layout"
+                @onClick={{action "openLayoutBox"}}>
+            </BsButton>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{#if newLayout}}
             <label>Name your new layout</label>
-            <Input type="text" @value={{this.name}}/>
-            <button {{action "createLayout"}}>Create</button>
-        {{/if}}
+            <Input type="text" @value={{this.name}} />
+            <BsButton @type="primary"
+                @defaultText="Create"
+                @onClick={{action "createLayout"}}
+                @pendingText="Creating new layout...">
+            </BsButton>
+            {{/if}}
+        </div>
     </div>
 
 </div>

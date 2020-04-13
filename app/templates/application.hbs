@@ -1,1 +1,24 @@
-{{outlet}}
+<BsNavbar as |navbar|>
+  <div class="navbar-header">
+    <navbar.toggle />
+    <a class="navbar-brand" href="#">Squared Up</a>
+  </div>
+  <navbar.content>
+    <navbar.nav as |nav|>
+      <nav.item>
+        <nav.linkTo @route="login">Home</nav.linkTo>
+      </nav.item>
+      {{#if loggedIn}}
+        <nav.item>
+            <nav.linkTo @route="layouts">Layouts</nav.linkTo>
+        </nav.item>
+        <nav.item>
+            <a class="nav-link" onclick={{action "signout"}}>Sign Out</a>
+        </nav.item>
+      {{/if}}
+    </navbar.nav>
+  </navbar.content>
+</BsNavbar>
+<div class="app-container">
+    {{outlet}}
+</div>

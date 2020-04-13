@@ -1,10 +1,29 @@
-<h1>Layout: {{ this.layout.name }}</h1>
+<div class="container headers">
+    <div class="row">
+        <div class="col">
+            <h1>Layout: {{ this.layout.name }}</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            To move a rectangle just click and drag it
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            To resize a rectangle, Mac Command + click or Windows Meta key + click and drag it from the lower bottom corner
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            To delete a rectangle, shift + click the rectangle you want to delete
+        </div>
+    </div>
+</div>
 
-<p>To move a rectangle just click and drag it</p>
-<p>To resize a rectangle, Mac Command + click or Windows Meta key + click and drag it from the lower bottom corner</p>
-<p>To delete a rectangle, shift + click the rectangle you want to delete</p>
-
-<Layout @rectangles={{this.rectangles}} 
-        @addRectangle={{addRectangle}}
-        @updateRectangle={{updateRectangle}}
-        @deleteRectangle={{deleteRectangle}}/>
+<div class="layout-view">
+    <Layout @rectangles={{this.rectangles}} 
+            @addRectangle={{addRectangle}}
+            @updateRectangle={{updateRectangle}}
+            @deleteRectangle={{deleteRectangle}}/>
+</div>
