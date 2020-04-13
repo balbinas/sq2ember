@@ -45,7 +45,7 @@ module.exports = function(environment) {
   }
   
   if (environment === 'production') {
-    ENV.APP.BACKEND = "http://squared-up.herokuapp.com";
+    ENV.APP.BACKEND = "https://squared-up.herokuapp.com";
     // here you can enable a production-specific feature
   }
 

@@ -1,0 +1,10 @@
+{
+    "hosting": {
+      "firebase": "balbina-squared-up",
+      "public": "dist",
+      "rewrites": [{
+        "source": "**",
+        "destination": "/index.html"
+      }]
+    }
+  }
