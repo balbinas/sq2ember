@@ -1,0 +1,8 @@
+{{#each @rectangles as |rect|}}
+    <Rectangle @id={{rect.id}}
+                @startX={{rect.startX}} 
+                @startY={{rect.startY}} 
+                @endX={{rect.endX}}
+                @endY={{rect.endY}} 
+                @color={{rect.color}}/>
+{{/each}}
