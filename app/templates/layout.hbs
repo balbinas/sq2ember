@@ -1,5 +1,9 @@
 <h1>Layout: {{ this.layout.name }}</h1>
 
+<p>To move a rectangle just click and drag it</p>
+<p>To resize a rectangle, Mac Command + click or Windows Meta key + click and drag it from the lower bottom corner</p>
+<p>To delete a rectangle, shift + click the rectangle you want to delete</p>
+
 <Layout @rectangles={{this.rectangles}} 
         @addRectangle={{addRectangle}}
         @updateRectangle={{updateRectangle}}

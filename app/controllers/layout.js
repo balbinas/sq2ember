@@ -2,7 +2,7 @@ import Controller from '@ember/controller';
 import { action } from "@ember/object";
 import fetch, { Headers } from 'fetch';
 import ENV from 'squared-up/config/environment';
-
+import { tracked } from '@glimmer/tracking';
 
 export default class LayoutController extends Controller {
 
