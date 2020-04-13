@@ -17,7 +17,7 @@ export default class Layout extends Route {
 
     let response2 = await fetch(url2, { method: 'get', headers });
 
-    return { rectangles: response.json(), layout: response2.json() }
+    return { rectangles: await response.json(), layout: await response2.json() }
   }
 
   setupController(controller, model) {
