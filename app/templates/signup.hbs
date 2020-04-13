@@ -7,13 +7,15 @@
     </div>
     <div class="row">
         <div class="col-4 offset-md-4">
-            {{!-- <label> Email </label> --}}
+            <label> Email </label>
+            <br>
             <Input type="text" @value={{this.email}} placeholder="Email"/>
         </div>
     </div>
     <div class="row">
         <div class="col">
-            {{!-- <label> Password </label> --}}
+            <label> Your password has to be at least 6 characters </label>
+            <br>
             <Input type="password" @value={{this.password}} placeholder="Password"/>
         </div>
     </div>
@@ -21,7 +23,7 @@
         <div class="col">
             <BsButton 
                 @type="primary"
-                @defaultText="Log In"
+                @defaultText="Sign Up"
                 @onClick={{action "signup"}}
                 @pendingText="Signing up...">
             </BsButton>

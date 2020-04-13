@@ -33,6 +33,7 @@ export default class LayoutController extends Controller {
     });
 
     try {
+      console.log("add rectangles call")
         let response = await fetch(url, { method: 'post', headers, body });
         this.rectangles = await this._reloadModel();
       } catch (e) {
@@ -43,8 +44,9 @@ export default class LayoutController extends Controller {
   }
 
   @action
-  async updateRectangle(rect, id, distX, distY, type) {
+  async updateRectangle(id, distX, distY, type) {
     let ogRect;
+    let body = '';
     
     for (let i = 0; i < this.rectangles.length; i++) {
       if (id == this.rectangles[i].id) {
@@ -55,21 +57,24 @@ export default class LayoutController extends Controller {
 
     let url = `${ENV.APP.BACKEND}/rectangles/${id}`;
 
-    let body = JSON.stringify({
-      startX: ogRect.startX + distX,
-      endX: ogRect.endX + distX,
-      startY: ogRect.startY + distY,
-      endY: ogRect.endY + distY,
-      layout_id: ogRect.layout_id
-    });
-    
-    let body2 = JSON.stringify({
-      startX: rect.startX,
-      endX: rect.endX,
-      startY: rect.startY,
-      endY: rect.endY,
-      layout_id: ogRect.layout_id
-    });
+    if (type == 'drag') {
+      body = JSON.stringify({
+        startX: ogRect.startX + distX,
+        endX: ogRect.endX + distX,
+        startY: ogRect.startY + distY,
+        endY: ogRect.endY + distY,
+        layout_id: ogRect.layout_id
+      });
+    } else {
+
+      body = JSON.stringify({
+        startX: ogRect.startX,
+        endX: ogRect.endX + distX,
+        startY: ogRect.startY,
+        endY: ogRect.endY + distY,
+        layout_id: ogRect.layout_id
+      });
+    }
 
     let headers = new Headers({
       'Content-Type': 'application/json',
@@ -77,12 +82,10 @@ export default class LayoutController extends Controller {
     });
 
     try {
-      if (type == 'drag') {
-        let response = await fetch(url, { method: 'put', headers, body });
-      } else {
-        let response = await fetch(url, { method: 'put', headers, body2 });
-      }
-        this.rectangles = await this._reloadModel();
+      let response = await fetch(url, { method: 'put', headers, body })
+
+      this.rectangles = await this._reloadModel();
+
       } catch (e) {
         console.log(e);
       }

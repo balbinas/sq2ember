@@ -38,11 +38,13 @@ export default class extends Component {
         this.deleteRectangle(event.target.id);
       } else if(pressMetaKey && event.pageX >= this.maxX - 5 && event.pageY >= this.maxY - 5) {
         this.resizing = true;
+        this.dragging = false;
         this.rectId = event.target.id;
         console.log("detects resizing", this.resizing)
       } else {
         console.log("detects dragging")
         this.dragging = true;
+        this.resizing = false;
         this.rectId = event.target.id;
       }
     }
@@ -51,24 +53,13 @@ export default class extends Component {
 	mouseUp(event) {
     let x = event.pageX - this.minX;
     let y = event.pageY - this.minY;
+    let distX = x - this.clickX;
+    let distY = y - this.clickY;
     
-    if (this.dragging) {
-      let distX = x - this.clickX;
-      let distY = y - this.clickY;
-
-      let rect = {}
-      
-      this.updateRectangle(rect, this.rectId, distX, distY, 'drag');
+      if (this.dragging) {
+      this.updateRectangle(this.rectId, distX, distY, 'drag');
     } else if (this.resizing) {
-      let distX = x - this.clickX;
-      let distY = y - this.clickY;
-      let rect = {
-        startX: this.minX,
-        startY: this.minY,
-        endX: this.maxX + distX,
-        endY: this.maxY + distY
-      }
-      this.updateRectangle(rect, this.rectId, 0, 0, 'resize');
+      this.updateRectangle(this.rectId, distX, distY, 'resize');
     } else {
       let rect = {
         startX: Math.max(0, Math.min(this.clickX, x)),
