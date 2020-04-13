@@ -31,21 +31,21 @@ export default class LayoutController extends Controller {
 
     try {
         let response = await fetch(url, { method: 'post', headers, body });
-        this.rectangle = await this._reloadModel();
+        this.rectangles = await this._reloadModel();
       } catch (e) {
         console.log(e);
       }
 
-      this.rectangle = this.rectangle
+      this.rectangles = this.rectangles
   }
 
   @action
   async updateRectangle(rect, id, distX, distY, type) {
     let ogRect;
     
-    for (let i = 0; i < this.rectangle.length; i++) {
-      if (id == this.rectangle[i].id) {
-        ogRect = this.rectangle[i];
+    for (let i = 0; i < this.rectangles.length; i++) {
+      if (id == this.rectangles[i].id) {
+        ogRect = this.rectangles[i];
         break;
       }
     };
@@ -82,7 +82,7 @@ export default class LayoutController extends Controller {
       } else {
         let response = await fetch(url, { method: 'put', headers, body2 });
       }
-        this.rectangle = await this._reloadModel();
+        this.rectangles = await this._reloadModel();
       } catch (e) {
         console.log(e);
       }
@@ -92,9 +92,9 @@ export default class LayoutController extends Controller {
   async deleteRectangle(id) {
     let ogRect;
     
-    for (let i = 0; i < this.rectangle.length; i++) {
-      if (id == this.rectangle[i].id) {
-        ogRect = this.rectangle[i];
+    for (let i = 0; i < this.rectangles.length; i++) {
+      if (id == this.rectangles[i].id) {
+        ogRect = this.rectangles[i];
         break; 
       }
     };
@@ -108,7 +108,7 @@ export default class LayoutController extends Controller {
 
     try {
       let response = await fetch(url, { method: 'delete', headers });
-      this.rectangle = await this._reloadModel();
+      this.rectangles = await this._reloadModel();
       } catch (e) {
         console.log(e);
       }
