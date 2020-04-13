@@ -31,20 +31,21 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
   }
-
+  
   if (environment === 'test') {
     // Testem prefers this...
     ENV.locationType = 'none';
-
+    
     // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = false;
     ENV.APP.LOG_VIEW_LOOKUPS = false;
-
+    
     ENV.APP.rootElement = '#ember-testing';
     ENV.APP.autoboot = false;
   }
-
+  
   if (environment === 'production') {
+    ENV.APP.BACKEND = "http://squared-up.herokuapp.com";
     // here you can enable a production-specific feature
   }
 
