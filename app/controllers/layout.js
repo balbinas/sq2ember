@@ -68,9 +68,6 @@ export default class LayoutController extends Controller {
       layout_id: ogRect.layout_id
     });
 
-    console.log("body1", body)
-    console.log("body2", body2)
-
     let headers = new Headers({
       'Content-Type': 'application/json',
       'Authorization': localStorage.getItem('auth-token')

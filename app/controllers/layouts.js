@@ -3,7 +3,7 @@ import ENV from 'squared-up/config/environment';
 import { action } from '@ember/object';
 import fetch, { Headers } from 'fetch';
 
-export default class SignupController extends Controller {
+export default class LayoutsController extends Controller {
     name = '';
     newLayout = false;
 
