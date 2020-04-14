@@ -31,18 +31,15 @@ export default class extends Component {
     
     let selectedRectangle = event.target.classList.contains('rectangle');
     let pressShiftKey = event.shiftKey;
-    let pressMetaKey = event.metaKey;
     
     if (selectedRectangle) {
       if (pressShiftKey) {
         this.deleteRectangle(event.target.id);
-      } else if(pressMetaKey && event.pageX >= this.maxX - 5 && event.pageY >= this.maxY - 5) {
+      } else if(event.pageX >= this.maxX - 5 && event.pageY >= this.maxY - 5) {
         this.resizing = true;
         this.dragging = false;
         this.rectId = event.target.id;
-        console.log("detects resizing", this.resizing)
       } else {
-        console.log("detects dragging")
         this.dragging = true;
         this.resizing = false;
         this.rectId = event.target.id;

@@ -6,17 +6,31 @@
     </div>
     <div class="row">
         <div class="col">
+            <BsButton @type="warning"
+                @defaultText="Clear out this layout"
+                @onClick={{action "clearLayout"}}
+                @pendingText="Clearing out layout...">
+            </BsButton>
+            <BsButton @type="danger"
+                @defaultText="Delete this layout"
+                @onClick={{action "deleteLayout"}}
+                @pendingText="Deleting layout...">
+            </BsButton>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
             To create a rectangle just start clicking and dragging
         </div>
     </div>
     <div class="row">
         <div class="col">
-            To move a rectangle just click and drag it
+            To move a rectangle just click it and drag it
         </div>
     </div>
     <div class="row">
         <div class="col">
-            To resize a rectangle, Mac Command + click or Windows Meta key + click and drag it from the lower bottom corner
+            To resize a rectangle, click and drag it from the bottom right corner
         </div>
     </div>
     <div class="row">

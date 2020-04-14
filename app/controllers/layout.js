@@ -11,8 +11,6 @@ export default class LayoutController extends Controller {
 
 	@action
   async addRectangle(rect) {
-    this.count++
-
     let url = `${ENV.APP.BACKEND}/rectangles`;
 
     let route = this.target.currentURL.split('/');
@@ -33,7 +31,6 @@ export default class LayoutController extends Controller {
     });
 
     try {
-      console.log("add rectangles call")
         let response = await fetch(url, { method: 'post', headers, body });
         this.rectangles = await this._reloadModel();
       } catch (e) {
@@ -112,6 +109,36 @@ export default class LayoutController extends Controller {
     try {
       let response = await fetch(url, { method: 'delete', headers });
       this.rectangles = await this._reloadModel();
+      } catch (e) {
+        console.log(e);
+      }
+  }
+
+  @action
+  async clearLayout() {    
+    for (let i = 0; i < this.rectangles.length; i++) {
+      this.deleteRectangle(this.rectangles[i].id)
+    };
+  }
+
+  @action
+  async deleteLayout() {
+    let route = this.target.currentURL.split('/');
+    let layoutId = route[route.length - 1];
+    let url = `${ENV.APP.BACKEND}/layouts/${layoutId}`;
+
+    let headers = new Headers({
+    'Content-Type': 'application/json',
+    'Authorization': localStorage.getItem('auth-token')
+    });
+
+    for (let i = 0; i < this.rectangles.length; i++) {
+      this.deleteRectangle(this.rectangles[i].id)
+    };
+
+    try {
+        let response = await fetch(url, { method: 'delete', headers });
+        return this.transitionToRoute('layouts');
       } catch (e) {
         console.log(e);
       }
